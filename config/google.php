@@ -1,6 +1,13 @@
 <?php
 
 return [
+
+    'sheets' => [
+        'waitlist' => [
+            'spreadsheet_id' => env('WAITLIST_GOOGLE_SPREADSHEET_ID'),
+            'range_id' => env('WAITLIST_GOOGLE_SHEET_RANGE_ID')
+        ]
+    ],
     /*
     |----------------------------------------------------------------------------
     | Google application name
@@ -20,7 +27,7 @@ return [
     'client_id' => env('GOOGLE_CLIENT_ID', ''),
     'client_secret' => env('GOOGLE_CLIENT_SECRET', ''),
     'redirect_uri' => env('GOOGLE_REDIRECT', ''),
-    'scopes' => [],
+    'scopes' => [\Google\Service\Sheets::SPREADSHEETS],
     'access_type' => 'online',
     'approval_prompt' => 'auto',
 

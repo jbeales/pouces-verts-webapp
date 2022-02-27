@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::resource('liste-attente', \App\Http\Controllers\WaitListController::class)->only([
+    'create',
+    'store'
+]);
+
+Route::get('demo', [\App\Http\Controllers\WaitListController::class, 'demo']);
