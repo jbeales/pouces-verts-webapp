@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Revolution\Google\Sheets\Sheets;
 use Revolution\Google\Sheets\Facades\Sheets as SheetsFacade;
@@ -68,6 +69,15 @@ class Waitlist {
         if( $this->is_already_on_list($email, $phone)) {
             throw new \Exception('Already on list', 1);
         }
+
+        $this->sheet->append([[
+            'Name' => $name,
+            'Phone' => $phone,
+            'Email' => !empty($email) ? $email : '',
+            'Language' => mb_strtoupper($language),
+            'Signup Date' => Carbon::now()->format('j F Y'),
+            'Notes' => $notes,
+        ]]);
 
         return true;
     }

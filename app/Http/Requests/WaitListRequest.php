@@ -13,7 +13,6 @@ class WaitListRequest extends FormRequest
      */
     public function authorize()
     {
-        // @TODO: Maybe recaptcha here?
         return true;
     }
 
@@ -25,9 +24,11 @@ class WaitListRequest extends FormRequest
     public function rules()
     {
         return [
+            'g-recaptcha-response' => 'required|captcha',
             'name' => 'required',
             'phone' => 'required|min:10',
             'email' => 'sometimes|nullable|email',
+            'lang'  => 'string',
             'note' => 'sometimes|nullable|string'
         ];
     }

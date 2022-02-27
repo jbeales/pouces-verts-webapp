@@ -3,15 +3,27 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Liste d'attente - Waitlist</title>
-
 </head>
 <body>
 
-<form action="{{ route('liste-attente.store') }}" method="POST">
+<form action="{{ route('liste-attente.store') }}" method="POST" id="waitlist-form">
     @csrf
     <h1>Inscrivez-vous sur la liste d'attente</h1>
+
+    @if (session('status') && session('status') === 'already on list')
+        <div class="alert alert-warning" role="alert">
+            <p>Vous êtes déja inscrit sur la liste d'attente! Quelqu'un vous contactera quand une place est disponible.</p>
+            <p>You are already on the wait list! Someone will contact you when a place is available.</p>
+        </div>
+    @endif
+
+    @if (session('status') && session('status') === 'saved')
+        <div class="alert alert-success" role="alert">
+            <p>Vous avez été ajouté à notre liste d'attente. Quelqu'un vous contactera quand une place est disponible.</p>
+            <p>You have been added to the waitlist. Someone will contact you when a place is available.</p>
+        </div>
+    @endif
 
     <fieldset>
         <p>
@@ -35,7 +47,6 @@
             <span class="error">{{$message}}</span>
             @enderror
         </p>
-
         <p>
             <label>Langue préféré / Preferred Language</label>
             <label for="lang-fr"><input type="radio" value="fr" name="lang" {{ old('lang') == 'fr' ? ' checked' : '' }} id="lang-fr">Français</label>
@@ -50,8 +61,10 @@
             @enderror
         </p>
 
-        <button type="submit">Soumettre / Submit</button>
+        {!! NoCaptcha::displaySubmit('waitlist-form', 'Soumettre / Submit') !!}
+
     </fieldset>
 </form>
+{!! NoCaptcha::renderJs('fr-CA') !!}
 </body>
 </html>

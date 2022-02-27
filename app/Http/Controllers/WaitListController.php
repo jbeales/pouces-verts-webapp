@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\WaitListRequest;
 use App\Waitlist;
 use Exception;
-use Revolution\Google\Sheets\Facades\Sheets;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 
 class WaitListController extends Controller
 {
@@ -15,7 +14,7 @@ class WaitListController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function create()
     {
@@ -36,12 +35,12 @@ class WaitListController extends Controller
                 $validated['name'],
                 $validated['phone'],
                 $validated['email'],
-                'FR',
+                $validated['lang'],
                 $validated['note']
             );
             return back()->with('status', 'saved');
         } catch(Exception $e) {
-            return back()->with('status', 'exists');
+            return back()->with('status', 'already on list');
         }
     }
 
