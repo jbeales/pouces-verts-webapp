@@ -1,6 +1,8 @@
 form {
     fieldset {
         border:none;
+        padding:0;
+        border:0;
     }
     label {
         display:block;
@@ -43,5 +45,10 @@ form {
             color:darkolivegreen;
         }
     }
+}
 
+aside.notice {
+    font-size:14px;
+    padding:0.5em 2em;
+    background-color:lightyellow;
 }

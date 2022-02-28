@@ -4,6 +4,8 @@ form {
 }
 form fieldset {
   border: none;
+  padding: 0;
+  border: 0;
 }
 form label {
   display: block;
@@ -35,4 +37,10 @@ form .alert.alert-success:before {
   content: "👍️";
   transform: translateX(-1);
   float: left;
+}
+
+aside.notice {
+  font-size: 14px;
+  padding: 0.5em 2em;
+  background-color: lightyellow;
 }
