@@ -18,7 +18,7 @@ class WaitListController extends Controller
      */
     public function create()
     {
-        return view('waitlist.form');
+        return view('waitlist.form', ['title' => "Liste d'attente - Waitlist"]);
     }
 
     /**
