@@ -1,0 +1,38 @@
+@charset "UTF-8";
+form {
+  font-size: 18px;
+}
+form fieldset {
+  border: none;
+}
+form label {
+  display: block;
+}
+form input, form button, form textarea {
+  font-size: 24px;
+}
+form span.error {
+  display: block;
+  color: maroon;
+  line-height: 1.5em;
+}
+form span.error:before {
+  content: "⚠️";
+}
+form .alert.alert-warning {
+  background-color: palegoldenrod;
+  color: maroon;
+}
+form .alert.alert-warning:before {
+  content: "⚠️";
+  display: inline-block;
+  float: left;
+}
+form .alert.alert-success {
+  color: darkolivegreen;
+}
+form .alert.alert-success:before {
+  content: "👍️";
+  transform: translateX(-1);
+  float: left;
+}

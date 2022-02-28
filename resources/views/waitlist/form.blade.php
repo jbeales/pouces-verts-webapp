@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Liste d'attente - Waitlist</title>
+    <link rel="stylesheet" href="{{ mix('/css/main.css') }}">
+    <link rel="stylesheet" href="{{ mix('/css/forms.css') }}">
 </head>
 <body>
 

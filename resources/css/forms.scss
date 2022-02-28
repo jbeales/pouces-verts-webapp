@@ -1,0 +1,47 @@
+form {
+    fieldset {
+        border:none;
+    }
+    label {
+        display:block;
+    }
+
+    font-size: 18px;
+
+    input, button, textarea {
+        font-size:24px;
+    }
+
+    span.error {
+        &:before {
+            content:"⚠️";
+        }
+
+        display:block;
+
+        color: maroon;
+        line-height:1.5em;
+    }
+
+    .alert {
+        &.alert-warning {
+            background-color: palegoldenrod;
+            color: maroon;
+            &:before {
+                content:"⚠️";
+                display:inline-block;
+                float:left;
+            }
+        }
+
+        &.alert-success {
+            &:before {
+                content:"👍️";
+                transform:translateX(-1);
+                float:left;
+            }
+            color:darkolivegreen;
+        }
+    }
+
+}
