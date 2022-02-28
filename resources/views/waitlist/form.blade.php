@@ -18,6 +18,7 @@
                 </ul>
             </div>
         </aside>
+        <hr>
         <form action="{{ route('liste-attente.store') }}" method="POST" id="waitlist-form">
             @csrf
             <h2>Inscrivez-vous sur la liste d'attente<span lang="en-CA">Get on the Waitlist</span></h2>
