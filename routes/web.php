@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('https://www.poucesverts.ca');
+    return redirect('https://www.poucesverts.ca', 302);
 });
 
 
