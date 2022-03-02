@@ -5,7 +5,7 @@
             <p>Cette formulaire est uniquement pour les jardins Guy-Gagnon et Woodland. Ce sont les jardins au bord de sur terre ferme, à Verdun, près de l'école de cirque et le CHSLD Manoir de Verdun.</p>
             <ul>
                 <li>Pour les jardins à l'Île-des-Sœurs il faut communiquer avec la <a href="mailto:jardinsids@gmail.com">Société d'horticulture de l'Île-des-Sœurs</a></li>
-                <li>Pour le jardin du Pacifique, (près des terrains de baseball sur boulevard Gaetan-Laberge), il faut communiquer avec le jardin du Pacifique.</li>
+                <li>Pour le jardin du Pacifique, (près des terrains de baseball sur boulevard Gaetan-Laberge), il faut communiquer avec le <a href="mailto:jardindupacifique@gmail.com">jardin du Pacifique</a>.</li>
                 <li>Pour les jardins à l'hôpital Douglas il faut communiquer avec la <a href="https://www.shverdun.org">Société d'horticulture de Verdun</a>.</li>
             </ul>
 
@@ -13,7 +13,7 @@
                 <p>This form is only for the Guy-Gagnon and Woodland gardens. These are the gardens along the waterfront on Verdun's "mainland," near the circus school and the CHSLD Manoir de Verdun.</p>
                 <ul>
                     <li>For the gardens on Île-des-Soeurs please contact the <a href="mailto:jardinsids@gmail.com">Société d'horticulture de l'Île-des-Soeurs</a></li>
-                    <li>For the jardin du Pacifique, (near the baseball diamonds on boulevard Gaetan-Laberge), please contact the jardin du Pacifique.</li>
+                    <li>For the jardin du Pacifique, (near the baseball diamonds on boulevard Gaetan-Laberge), please contact the <a href="mailto:jardindupacifique@gmail.com">jardin du Pacifique</a>.</li>
                     <li>For the gardens at the Douglas hospital please contact the <a href="https://www.shverdun.org">Société d'horticulture de Verdun</a>.</li>
                 </ul>
             </div>
