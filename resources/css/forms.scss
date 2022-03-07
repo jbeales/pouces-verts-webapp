@@ -45,6 +45,27 @@ form {
             color:darkolivegreen;
         }
     }
+
+    span.info {
+        font-size:92%;
+        display:block;
+    }
+
+    input[type="number"] {
+        width: 3em;
+    }
+
+    .calculator {
+        display: flex;
+        justify-content: space-between;
+        background-color: #edf2f7;
+        border-bottom:1px solid #cbd5e0;
+        padding: 0.15em;
+
+        input {
+            background-color:inherit;
+        }
+    }
 }
 
 aside.notice {
@@ -52,3 +73,4 @@ aside.notice {
     padding:0.5em 2em;
     background-color:lightyellow;
 }
+

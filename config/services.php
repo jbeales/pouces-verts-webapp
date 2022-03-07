@@ -30,4 +30,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'stripe' => [
+        'secret_key' => env('STRIPE_SECRET_KEY'),
+        'small_garden_product_id' => env('STRIPE_SMALL_GARDEN_PRODUCT_ID'),
+        'large_garden_product_id' => env('STRIPE_LARGE_GARDEN_PRODUCT_ID'),
+        'biblio_loisir_coupon_id' => env('STRIPE_BIBLIO_LOISIR_COUPON_CODE')
+    ]
+
 ];

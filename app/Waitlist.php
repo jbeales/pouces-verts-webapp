@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Concerns\InteractsWithGoogleSheets;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Revolution\Google\Sheets\Sheets;
@@ -10,10 +11,7 @@ use Revolution\Google\Sheets\Facades\Sheets as SheetsFacade;
 
 class Waitlist {
 
-    /**
-     * @var Sheets The Google Sheet instance
-     */
-    protected Sheets $sheet;
+    use InteractsWithGoogleSheets;
 
     public static function instance() {
         static $waitlist;
@@ -23,12 +21,6 @@ class Waitlist {
         return $waitlist;
     }
 
-    public function get_members(): Collection
-    {
-        $rows = $this->sheet->get();
-        $header = $rows->pull(0);
-        return SheetsFacade::collection($header, $rows);
-    }
 
     /**
     @function normalizePhoneNumber($number)
@@ -52,7 +44,7 @@ class Waitlist {
     {
         $phone = static::normalizePhoneNumber($phone);
         $email = mb_strtolower($email);
-        return $this->get_members()->contains(function($person) use($email, $phone) {
+        return $this->get_collection()->contains(function($person) use($email, $phone) {
             if(!empty($person->get('Email')) && mb_strtolower($person->get('Email')) === $email) {
                 return true;
             }
@@ -70,7 +62,7 @@ class Waitlist {
             throw new \Exception('Already on list', 1);
         }
 
-        $this->sheet->append([[
+        $this->firstSheet()->append([[
             'Name' => $name,
             'Phone' => $phone,
             'Email' => !empty($email) ? $email : '',
@@ -83,10 +75,9 @@ class Waitlist {
     }
 
     public function __construct() {
-        $this->sheet = SheetsFacade::spreadsheet(
-            config('google.sheets.waitlist.spreadsheet_id')
-        )->sheet(
-            config('google.sheets.waitlist.range_id')
-        );
+        $this->bootSheets([[
+            'spreadsheet_id' => config('google.sheets.waitlist.spreadsheet_id'),
+            'range_id' => config('google.sheets.waitlist.range_id')
+        ]]);
     }
 }

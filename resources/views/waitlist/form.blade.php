@@ -1,4 +1,13 @@
 <x-layout>
+    <x-slot name="title">
+        Liste d'attente - Waitlist
+    </x-slot>
+    <x-slot name="page_title">
+        Liste d'attente
+    </x-slot>
+    <x-slot name="page_title_en">
+        Waitlist
+    </x-slot>
     <section>
         <aside class="notice">
             <h4>Important</h4>

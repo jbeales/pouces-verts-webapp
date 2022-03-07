@@ -18,7 +18,7 @@ class WaitListController extends Controller
      */
     public function create()
     {
-        return view('waitlist.form', ['title' => "Liste d'attente - Waitlist"]);
+        return view('waitlist.form');
     }
 
     /**
@@ -46,7 +46,11 @@ class WaitListController extends Controller
 
     public function demo() {
 
-        $member = Waitlist::instance()->get_members()->first();
+        $member = Waitlist::instance()->get_collection();
+
+        //return '<pre>' . print_r($member, true) . '</pre>';
+
+
 
         // (514) 718-6649
 

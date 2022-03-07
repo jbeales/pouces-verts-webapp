@@ -9,7 +9,7 @@
 </head>
 <body>
 <header>
-    <h1>Liste d'attente<span lang="en-CA">Waitlist</span></h1>
+    <h1>{{ $page_title }}<span lang="en-CA">{{ $page_title_en }}</span></h1>
     <img src="/images/logo-couleur.png" width="200" height="200" alt="Le logo de l'organisme les Pouces verts de Verdun">
 </header>
 {{ $slot }}
