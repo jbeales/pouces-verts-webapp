@@ -22,7 +22,10 @@ Artisan::command('inspire', function () {
 Artisan::command('test:sheet', function() {
     $member = new Member();
     $member->load_from_email('john@johnbeales.com');
-
     dd($member);
+});
 
+Artisan::command('test:jobclass', function() {
+   $this->line(print_r(class_exists('App\Jobs\StripeWebhooks\HandleCheckoutSessionComplete'), true));
+   $this->line(print_r(class_exists('\App\Jobs\StripeWebhooks\HandleCheckoutSessionComplete'), true));
 });
