@@ -8,8 +8,14 @@ return [
             'range_id' => env('WAITLIST_GOOGLE_SHEET_RANGE_ID')
         ],
         'members' => [
-            'spreadsheet_id' => env('MEMBERS_GOOGLE_SPREADSHEET_ID'),
-            'range_id' => env('MEMBERS_GOOGLE_SHEET_RANGE_ID')
+            [
+                'spreadsheet_id' => env('MEMBERS_GOOGLE_SPREADSHEET_ID'),
+                'range_id' => env('MEMBERS_GOOGLE_SHEET_RANGE_ID')
+            ],
+            [
+                'spreadsheet_id' => env('MEMBERS_GOOGLE_NOACCOUNT_SPREADSHEET_ID'),
+                'range_id' => env('MEMBERS_GOOGLE_NOACCOUNT_SHEET_RANGE_ID')
+            ],
         ]
     ],
     /*

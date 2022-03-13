@@ -6,8 +6,10 @@ use Revolution\Google\Sheets\Facades\Sheets as SheetsFacade;
 use Revolution\Google\Sheets\Sheets;
 
 trait InteractsWithGoogleSheets {
+
+
     /**
-     * @var Sheet[] The Google Sheet instance
+     * @var Sheets[] The Google Sheet instance
      */
     protected array $sheets = [];
 
@@ -15,10 +17,12 @@ trait InteractsWithGoogleSheets {
     {
 
         $collection = collect([]);
-
         foreach($this->sheets as $sheet) {
+
+
             $rows = $sheet->get();
             $header = $rows->pull(0);
+
             $collection = $collection->concat(
                 $collection->concat(
                     SheetsFacade::collection($header, $rows)
@@ -33,16 +37,17 @@ trait InteractsWithGoogleSheets {
     public function bootSheets( array $sheets ) {
 
         foreach($sheets as $sheet) {
-            $this->sheets[] = SheetsFacade::spreadsheet(
+            $gsheet = SheetsFacade::spreadsheet(
                 $sheet['spreadsheet_id']
             )->sheet(
                 $sheet['range_id']
             );
+            $this->sheets[] = $gsheet;
         }
     }
 
     public function firstSheet(): ?Sheets
     {
-        return $this->sheets[0];
+        return (!empty($this->sheets) ? $this->sheets[0] : null);
     }
 }

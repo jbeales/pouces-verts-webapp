@@ -2,13 +2,37 @@
 
 namespace App;
 
-use App\Concerns\InteractsWithGoogleSheets;
+use Revolution\Google\Sheets\Facades\Sheets;
 use Illuminate\Support\Collection;
 use Serializable;
 
 class Member implements Serializable {
 
-    use InteractsWithGoogleSheets;
+    protected array $googleSheetIds;
+
+    public function getAllMembers(): Collection
+        {
+
+        $members = collect([]);
+
+        foreach($this->googleSheetIds as $sheetId) {
+            $sheet = Sheets::spreadsheet(
+                    $sheetId['spreadsheet_id']
+                )->sheet(
+                    $sheetId['range_id']
+                );
+
+            $rows = $sheet->get();
+            $header = $rows->pull(0);
+
+            $members = $members->concat(
+                Sheets::collection($header, $rows)
+            );
+        }
+
+        return $members;
+    }
+
 
     /**
      * @var Collection The member's record from the Members spreadsheet.
@@ -16,10 +40,7 @@ class Member implements Serializable {
     protected Collection $record;
 
     public function __construct() {
-        $this->bootSheets([[
-            'spreadsheet_id' => config('google.sheets.members.spreadsheet_id'),
-            'range_id' => config('google.sheets.members.range_id')
-        ]]);
+        $this->googleSheetIds = config('google.sheets.members');
     }
 
     public function serialize() {
@@ -33,8 +54,8 @@ class Member implements Serializable {
         // look up the member.
         $member_email = mb_strtolower($member_email);
 
-        $member = $this->get_collection()->filter(function($member) use ($member_email) {
-            return mb_strtolower($member->get('Email Address')) === $member_email;
+        $member = $this->getAllMembers()->filter(function($member) use ($member_email) {
+            return mb_strtolower($member->get('Adresse Courriel')) === $member_email;
         });
 
         if($member->isEmpty()) {

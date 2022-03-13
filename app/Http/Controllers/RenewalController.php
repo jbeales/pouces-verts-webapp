@@ -23,6 +23,8 @@ class RenewalController extends Controller
         } else if($request->has('confirm')) {
             return $this->sendToStripe($request);
         }
+
+        return redirect(route('renewal.start'));
     }
 
     protected function sendToStripe(Request $request) {
@@ -173,5 +175,26 @@ class RenewalController extends Controller
 
     public function cancel(Request $request) {
         return view('renewal.cancel');
+    }
+
+
+    public function webhook(Request $request) {
+
+        try {
+          $event = \Stripe\Webhook::constructEvent(
+            $request->body(), $request->get('http_stripe_signature'), config('services.stripe.webhook-secret')
+          );
+        } catch(\UnexpectedValueException $e) {
+          // Invalid payload
+          abort(400);
+        } catch(\Stripe\Exception\SignatureVerificationException $e) {
+          // Invalid signature
+          abort(400);
+        }
+
+        // Handle the event
+        echo 'Received unknown event type ' . $event->type;
+
+        return 'OK';
     }
 }

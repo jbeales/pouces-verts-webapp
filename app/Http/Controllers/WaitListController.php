@@ -46,7 +46,19 @@ class WaitListController extends Controller
 
     public function demo() {
 
-        $member = Waitlist::instance()->get_collection();
+        $member = new \App\Member();
+
+
+        echo '<pre>';
+        $member->getAllMembers()->each(function($m)  {
+           echo 'M: ' . $m->get('Nom (seulement une personne)') . ' ' . $m->get('Prénom (seulement une personne)')  . "\n";
+        });
+
+        echo "\nend\n</pre>";
+
+        return 'done';
+
+       // return $ret . '</pre>';
 
         //return '<pre>' . print_r($member, true) . '</pre>';
 
@@ -54,10 +66,10 @@ class WaitListController extends Controller
 
         // (514) 718-6649
 
-        $added = Waitlist::instance()->add('Ginette', '(514) 718-6649', '', '', '');
+        //$added = Waitlist::instance()->add('Ginette', '(514) 718-6649', '', '', '');
 
 
-        return '<pre>' . print_r($added, true ) . '</pre>';
+        //return '<pre>' . print_r($added, true ) . '</pre>';
 
     }
 }
