@@ -65,18 +65,21 @@ class HandleSessionCompleted implements ShouldQueue
             $reference_id_parts = explode('-', $event['client_reference_id'] );
             if(count($reference_id_parts) === 2) {
                 $email = trim($reference_id_parts[1]);
+                // Try to get the email.
+                try {
+                    $member = new Member();
+                    $member->load_from_email($email);
+                    if(!$member->has_paid()) {
+                        $member->record_payment($event['amount_total'], $event['payment_intent']);
+                    }
+                } catch (Exception $e) {
+                    Log::info("Member $email paid with payment {$event['payment_intent']} but could not be located in webhook.");
+                }
+            } else {
+                Log::info("Couldn't parse client email from reference ID {$event['client_reference_id']}");
             }
 
-            // Try to get the email.
-            try {
-                $member = new Member();
-                $member->load_from_email($email);
-                if(!$member->has_paid()) {
-                    $member->record_payment($event['amount_total'], $event['payment_intent']);
-                }
-            } catch (Exception $e) {
-                Log::info("Member $email paid with payment {$event['payment_intent']} but could not be located in webhook.");
-            }
+
         }
     }
 }
