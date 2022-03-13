@@ -32,3 +32,7 @@ Route::get('paiement/succes/{checkout_session_id}', [\App\Http\Controllers\Renew
 Route::get('paiement/cancel', [\App\Http\Controllers\RenewalController::class, 'cancel'])->name('renewal.cancel');
 
 Route::get('demo', [\App\Http\Controllers\WaitListController::class, 'demo']);
+
+
+
+Route::stripeWebhooks('accept-stripe-webhook');
