@@ -54,6 +54,7 @@ class RenewalController extends Controller
         }
 
         $checkout_data = [
+            'client_reference_id' => sprintf('%s - %s', date('Y'), session()->get('member')->get('Adresse Courriel')),
             'line_items' => [$line_items],
             'mode' => 'payment',
             'success_url' => url('paiement/succes/{CHECKOUT_SESSION_ID}'),
@@ -175,26 +176,5 @@ class RenewalController extends Controller
 
     public function cancel(Request $request) {
         return view('renewal.cancel');
-    }
-
-
-    public function webhook(Request $request) {
-
-        try {
-          $event = \Stripe\Webhook::constructEvent(
-            $request->body(), $request->get('http_stripe_signature'), config('services.stripe.webhook-secret')
-          );
-        } catch(\UnexpectedValueException $e) {
-          // Invalid payload
-          abort(400);
-        } catch(\Stripe\Exception\SignatureVerificationException $e) {
-          // Invalid signature
-          abort(400);
-        }
-
-        // Handle the event
-        echo 'Received unknown event type ' . $event->type;
-
-        return 'OK';
     }
 }

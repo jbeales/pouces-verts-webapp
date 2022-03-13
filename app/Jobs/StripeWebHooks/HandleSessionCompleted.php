@@ -33,6 +33,7 @@ class HandleSessionCompleted implements ShouldQueue
      */
     public function handle()
     {
-        //
+        // you can access the payload of the webhook call with `$this->webhookCall->payload`
+
     }
 }
