@@ -29,14 +29,24 @@ class WaitListController extends Controller
      */
     public function store(WaitListRequest $request)
     {
-        $validated = $request->validated();
+        $validated = array_merge(
+            [
+                'name' => '',
+                'phone' => '',
+                'email' => '',
+                'lang' => '',
+                'note' => '',
+            ],
+            $request->validated()
+        );
+
         try {
             Waitlist::instance()->add(
                 $validated['name'],
                 $validated['phone'],
                 $validated['email'],
-                $validated['lang'],
-                $validated['note']
+                $validated['lang'] ?? '',
+                $validated['note'] ?? '',
             );
             return back()->with('status', 'saved');
         } catch(Exception $e) {
