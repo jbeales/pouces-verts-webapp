@@ -31,31 +31,9 @@ Route::get('paiement/confirmation', [\App\Http\Controllers\RenewalController::cl
 Route::get('paiement/succes/{checkout_session_id}', [\App\Http\Controllers\RenewalController::class, 'success'])->name('renewal.success');
 Route::get('paiement/cancel', [\App\Http\Controllers\RenewalController::class, 'cancel'])->name('renewal.cancel');
 
-Route::get('demo', [\App\Http\Controllers\WaitListController::class, 'demo']);
+//Route::get('demo', [\App\Http\Controllers\WaitListController::class, 'demo']);
 
 
 
 Route::stripeWebhooks('accept-stripe-webhook');
 
-
-Route::get('test', function() {
-
-    if( class_exists('App\Jobs\StripeWebhooks\HandleCheckoutSessionComplete') ) {
-        dd('Exists.');
-    }
-
-    if(class_exists('\App\Jobs\StripeWebhooks\HandleCheckoutSessionComplete')) {
-        dd('Exists with leading slash.');
-    }
-
-    if(class_exists('App\Http\Controllers\RenewalController')) {
-        dd('Renewal Controller Exists.');
-    }
-
-    if(class_exists('App\Member')) {
-        dd('Member Class Exists');
-    }
-
-    dd("Done.");
-
-});
