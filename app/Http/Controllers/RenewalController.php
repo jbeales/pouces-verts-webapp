@@ -55,6 +55,7 @@ class RenewalController extends Controller
 
         $checkout_data = [
             'client_reference_id' => sprintf('%s - %s', date('Y'), session()->get('member')->get('Adresse Courriel')),
+            'customer_email' => session()->get('member')->get('Adresse Courriel'),
             'line_items' => [$line_items],
             'mode' => 'payment',
             'success_url' => url('paiement/succes/{CHECKOUT_SESSION_ID}'),
