@@ -1,6 +1,10 @@
 :root {
     --main-color-rgb: 70, 80, 70;
-    --main-color: rgba(var(--main-color-rgb));
+    --main-color-hsl: 120, 6%, 29%;
+    --main-color: hsla(var(--main-color-hsl));
+
+    --light-color-hsl: 120, 15%, 60%;
+    --light-color: hsla(var(--light-color-hsl));
 }
 
 body, html {

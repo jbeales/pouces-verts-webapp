@@ -40,6 +40,8 @@
                     <strong>Totale à payer / Amount to Pay:</strong>
                     <strong class="calculated">{{$to_charge['total']}} $</strong>
                 </p>
+
+                <p>Vous serez envoyé à checkout.stripe.com pour payez. / You will be sent to checkout.stripe.com to pay.</p>
                 <input name="confirm" type="hidden" value="yes">
                 <button name="submit" id="submit">Prochain Étape: Payez / Next Step: Pay!</button>
             </fieldset>
