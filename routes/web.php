@@ -36,3 +36,17 @@ Route::get('demo', [\App\Http\Controllers\WaitListController::class, 'demo']);
 
 
 Route::stripeWebhooks('accept-stripe-webhook');
+
+
+Route::get('test', function() {
+    if( class_exists('App\Jobs\StripeWebhooks\HandleCheckoutSessionComplete') ) {
+        dd('Exists.');
+    }
+
+    if(class_exists('\App\Jobs\StripeWebhooks\HandleCheckoutSessionComplete')) {
+        dd('Exists with leading slash.');
+    }
+
+    dd("Done.");
+
+});
