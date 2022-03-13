@@ -39,7 +39,6 @@ Route::stripeWebhooks('accept-stripe-webhook');
 
 
 Route::get('test', function() {
-    phpinfo();
 
     if( class_exists('App\Jobs\StripeWebhooks\HandleCheckoutSessionComplete') ) {
         dd('Exists.');
@@ -47,6 +46,10 @@ Route::get('test', function() {
 
     if(class_exists('\App\Jobs\StripeWebhooks\HandleCheckoutSessionComplete')) {
         dd('Exists with leading slash.');
+    }
+
+    if(class_exists('App\Member')) {
+        dd('Member Class Exists');
     }
 
     dd("Done.");
