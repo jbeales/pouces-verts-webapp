@@ -26,6 +26,13 @@ Artisan::command('test:sheet', function() {
 });
 
 Artisan::command('test:jobclass', function() {
-   $this->line(print_r(class_exists('App\Jobs\StripeWebhooks\HandleCheckoutSessionComplete'), true));
-   $this->line(print_r(class_exists('\App\Jobs\StripeWebhooks\HandleCheckoutSessionComplete'), true));
+    if( class_exists('App\Jobs\StripeWebhooks\HandleCheckoutSessionComplete') ) {
+        $this->info('Exists.');
+    }
+
+    if(class_exists('\App\Jobs\StripeWebhooks\HandleCheckoutSessionComplete')) {
+        $this->info('Exists with leading slash.');
+    }
+    $this->line('Done.');
+
 });
