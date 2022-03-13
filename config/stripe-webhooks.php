@@ -15,7 +15,7 @@ return [
      * https://stripe.com/docs/api#event_types.
      */
     'jobs' => [
-        'checkout_session_completed' => \App\Jobs\StripeWebhooks\HandleSessionCompleted::class,
+        'checkout_session_completed' => \App\Jobs\StripeWebhooks\HandleCheckoutSessionComplete::class,
     ],
 
     /*
