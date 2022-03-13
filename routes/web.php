@@ -48,6 +48,10 @@ Route::get('test', function() {
         dd('Exists with leading slash.');
     }
 
+    if(class_exists('App\Http\Controllers\RenewalController')) {
+        dd('Renewal Controller Exists.');
+    }
+
     if(class_exists('App\Member')) {
         dd('Member Class Exists');
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs\StripeWebHooks;
+namespace App\Jobs\StripeWebhooks;
 
 use App\Member;
 use Exception;
