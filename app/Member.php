@@ -130,7 +130,7 @@ class Member implements Serializable {
             }
 
             $payment_cell = static::paymentCols[$sheetId['range_id']][0] . ($user_row + 1);
-            $sheet->range($payment_cell)->update([[(string)$amount/100, $id]]);
+            $sheet->range($payment_cell)->update([[(string)$amount/100, $id, date('Y-m-d H:i:s')]]);
             return true;
         }
 
