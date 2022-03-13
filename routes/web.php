@@ -39,6 +39,8 @@ Route::stripeWebhooks('accept-stripe-webhook');
 
 
 Route::get('test', function() {
+    phpinfo();
+
     if( class_exists('App\Jobs\StripeWebhooks\HandleCheckoutSessionComplete') ) {
         dd('Exists.');
     }
