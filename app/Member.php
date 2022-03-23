@@ -44,7 +44,37 @@ class Member implements Serializable {
         return $members;
     }
 
+    function has_renewed(string $email, string $mainphone, string $otherphone): bool
+    {
+        static $members = false;
+        if(!$members) {
+            $members = $this->getAllMembers();
+            $members = $members->map(function($member) {
+                return [
+                    'email' => trim(mb_strtolower($member['Adresse Courriel'])),
+                    'mainphone' => Waitlist::normalizePhoneNumber($member['Numéro de téléphone principal']),
+                    'otherphone' => Waitlist::normalizePhoneNumber($member['Numéro de téléphone alternatif']),
+                ];
+            });
+        }
 
+        if(!empty($email) && $members->pluck('email')->contains(mb_strtolower($email))) {
+            return true;
+        }
+
+        foreach([$mainphone,$otherphone] as $phone) {
+            if(
+                !empty($phone) && (
+                    $members->pluck('mainphone')->contains(Waitlist::normalizePhoneNumber($phone))
+                    || $members->pluck('otherphone')->contains(Waitlist::normalizePhoneNumber($phone))
+                )
+
+            ) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 
     /**
