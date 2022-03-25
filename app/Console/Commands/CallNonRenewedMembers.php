@@ -83,13 +83,11 @@ class CallNonRenewedMembers extends Command
         $numbers_to_call = $this->getNumbersToCall();
         Storage::put('2022-renewal-robocall-recipients.txt', implode("\n",$numbers_to_call));
 
-        $numbers_to_call = [***REMOVED***];
-
 
         $client = new Client(config('services.twilio.sid'), config('services.twilio.token'));
 
         // safety
-      //  exit;
+        exit;
 
         foreach($numbers_to_call as $number) {
             // Read TwiML at this URL when a call connects (hold music)
