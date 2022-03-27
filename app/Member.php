@@ -95,10 +95,10 @@ class Member implements Serializable {
 
     public function load_from_email(string $member_email) {
         // look up the member.
-        $member_email = mb_strtolower($member_email);
+        $member_email = trim(mb_strtolower($member_email));
 
         $member = $this->getAllMembers()->filter(function($member) use ($member_email) {
-            return mb_strtolower($member->get('Adresse Courriel')) === $member_email;
+            return mb_strtolower(trim($member->get('Adresse Courriel'))) === $member_email;
         });
 
         if($member->isEmpty()) {
