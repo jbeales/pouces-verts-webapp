@@ -119,7 +119,7 @@ class Member implements Serializable {
     }
 
     public function get(string $key) {
-        return $this->record->get($key);
+        return trim($this->record->get($key));
     }
 
     public function record_payment(int $amount, string $id):bool
