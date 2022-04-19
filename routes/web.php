@@ -23,14 +23,14 @@ Route::resource('liste-attente', \App\Http\Controllers\WaitListController::class
     'store'
 ]);
 
-
+/*
 Route::get('paiement', [\App\Http\Controllers\RenewalController::class, 'start'])->name('renewal.start');
 Route::post('paiement', [\App\Http\Controllers\RenewalController::class, 'handle'])->name('renewal.handler');
 Route::get('paiement/verification', [\App\Http\Controllers\RenewalController::class, 'verifyAmounts'])->name('renewal.verify-amounts');
 Route::get('paiement/confirmation', [\App\Http\Controllers\RenewalController::class, 'confirm'])->name('renewal.confirm');
 Route::get('paiement/succes/{checkout_session_id}', [\App\Http\Controllers\RenewalController::class, 'success'])->name('renewal.success');
 Route::get('paiement/cancel', [\App\Http\Controllers\RenewalController::class, 'cancel'])->name('renewal.cancel');
-
+*/
 //Route::get('demo', [\App\Http\Controllers\WaitListController::class, 'demo']);
 
 
