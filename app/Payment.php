@@ -29,7 +29,7 @@ class Payment {
     public function record( array $event ) {
 
         $this->firstSheet()->append([[
-            'Timestamp' => Carbon::now()->format('j F Y'),
+            'Timestamp' => Carbon::now()->format('j F Y H:i:s e'),
             'Description' => $event['client_reference_id'],
             'Amount' => (string)$event['amount_total']/100,
             'Stripe ID' => $event['payment_intent'],
