@@ -16,7 +16,7 @@ class PaymentController extends Controller
     public function handle(Request $request) {
 
         $validated = $request->validate([
-            'amount' => 'required|regex:/^[0-9]{1,4}[.,]?([0-9]{2})?$/',
+            'amount' => 'required|regex:/^[0-9]{1,4}[.,]?([0-9]{0,2})?$/',
             'email' => 'required|email',
             'description' => 'nullable|string',
         ]);
