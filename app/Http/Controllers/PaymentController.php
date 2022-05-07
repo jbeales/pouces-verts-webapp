@@ -23,13 +23,6 @@ class PaymentController extends Controller
 
         $amount = $validated['amount'];
 
-        session([
-            'amount' => $amount,
-            'description' => $validated['description'] ?? '',
-            'email' => $validated['email']
-        ]);
-
-
         $amount = str_replace(',', '.', $amount);
         $amount = $amount * 100;
 
