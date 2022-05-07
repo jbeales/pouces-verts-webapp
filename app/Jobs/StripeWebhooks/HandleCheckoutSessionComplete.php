@@ -3,6 +3,7 @@
 namespace App\Jobs\StripeWebhooks;
 
 use App\Member;
+use App\Payment;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -62,6 +63,9 @@ class HandleCheckoutSessionComplete implements ShouldQueue
                 return;
             }
 
+            Payment::instance()->record($event);
+
+            /*
             $reference_id_parts = explode('-', $event['client_reference_id'] );
             if(count($reference_id_parts) === 2) {
                 $email = trim($reference_id_parts[1]);
@@ -78,6 +82,7 @@ class HandleCheckoutSessionComplete implements ShouldQueue
             } else {
                 Log::channel('payment')->info("Couldn't parse client email from reference ID {$event['client_reference_id']} in payment webhook.");
             }
+            */
         }
     }
 }

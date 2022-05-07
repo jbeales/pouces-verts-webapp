@@ -16,6 +16,10 @@ return [
                 'spreadsheet_id' => env('MEMBERS_GOOGLE_NOACCOUNT_SPREADSHEET_ID'),
                 'range_id' => env('MEMBERS_GOOGLE_NOACCOUNT_SHEET_RANGE_ID')
             ],
+        ],
+        'payments' => [
+            'spreadsheet_id' => env('PAYMENTS_GOOGLE_SPREADSHEET_ID'),
+            'range_id' => env('PAYMENTS_GOOGLE_SHEET_RANGE_ID'),
         ]
     ],
     /*

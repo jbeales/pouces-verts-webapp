@@ -23,6 +23,12 @@ Route::resource('liste-attente', \App\Http\Controllers\WaitListController::class
     'store'
 ]);
 
+Route::get('paiement', [\App\Http\Controllers\PaymentController::class, 'start'])->name('payment.start');
+Route::post('paiement', [\App\Http\Controllers\PaymentController::class, 'handle'])->name('payment.handler');
+Route::get('paiement/succes/{checkout_session_id}', [\App\Http\Controllers\PaymentController::class, 'success'])->name('payment.success');
+Route::get('paiement/cancel', [\App\Http\Controllers\PaymentController::class, 'cancel'])->name('payment.cancel');
+
+
 /*
 Route::get('paiement', [\App\Http\Controllers\RenewalController::class, 'start'])->name('renewal.start');
 Route::post('paiement', [\App\Http\Controllers\RenewalController::class, 'handle'])->name('renewal.handler');
