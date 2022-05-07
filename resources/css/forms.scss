@@ -76,9 +76,10 @@ form {
     border-left: 4px solid var(--light-color);
     width:max-content;
     padding:0.5em 1em;
+    max-width: 88vw;
 }
 .amount-paid {
-    margin-left:5em;
+    margin-left:2em;
     font-weight:bold;
 }
 
