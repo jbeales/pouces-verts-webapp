@@ -59,6 +59,25 @@ form .calculator input {
   background-color: inherit;
 }
 
+.paid {
+  background-color: honeydew;
+  border-left: 4px solid var(--light-color);
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0.5em 1em;
+}
+
+.amount-paid {
+  margin-left: 5em;
+  font-weight: bold;
+}
+
+.paid .description {
+  font-size: 85%;
+  font-style: italic;
+}
+
 aside.notice {
   font-size: 14px;
   padding: 0.5em 2em;

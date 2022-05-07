@@ -22,14 +22,18 @@ class PaymentController extends Controller
         ]);
 
         $amount = $validated['amount'];
+
+        session([
+            'amount' => $amount,
+            'description' => $validated['description'] ?? '',
+            'email' => $validated['email']
+        ]);
+
+
         $amount = str_replace(',', '.', $amount);
         $amount = $amount * 100;
 
         $description = trim( sprintf('%s - %s', $validated['email'], $validated['description']), '- ');
-
-
-
-
 
         $checkout_data = [
             'client_reference_id' => $description,
@@ -52,6 +56,8 @@ class PaymentController extends Controller
             'cancel_url' => url(route('payment.cancel')),
         ];
 
+
+
         Stripe::setApiKey(config('services.stripe.secret_key'));
         $session = Session::create($checkout_data);
 
@@ -61,7 +67,9 @@ class PaymentController extends Controller
 
 
     public function success(string $checkout_session_id, Request $request) {
-        return view('payment.success');
+        Stripe::setApiKey(config('services.stripe.secret_key'));
+        $session = Session::retrieve($checkout_session_id);
+        return view('payment.success', ['stripe_session' => $session]);
     }
 
     public function cancel(Request $request) {
