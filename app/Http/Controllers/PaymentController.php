@@ -27,7 +27,7 @@ class PaymentController extends Controller
         $amount = str_replace(',', '.', $amount);
         $amount = $amount * 100;
 
-        $description = trim( sprintf('%s - %s', $validated['email'], $validated['description']), '- ');
+        $description = trim( sprintf('%s - %s', $validated['email'], $validated['payment-name']), '- ');
 
         $payment_name = empty($validated['payment-name']) ? 'Autre / Other' : $validated['payment-name'];
 
