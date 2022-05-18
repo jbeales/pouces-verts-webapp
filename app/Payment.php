@@ -47,7 +47,6 @@ class Payment {
             'Description' => $product->description,
             'Amount' => (string)$event['amount_total']/100,
             'Stripe ID' => $event['payment_intent'],
-
         ]]);
 
     }
