@@ -18,6 +18,7 @@ class PaymentController extends Controller
         $validated = $request->validate([
             'amount' => 'required|regex:/^[0-9]{1,4}[.,]?([0-9]{0,2})?$/',
             'email' => 'required|email',
+            'payment-name' => 'nullable|string',
             'description' => 'nullable|string',
         ]);
 
@@ -28,6 +29,8 @@ class PaymentController extends Controller
 
         $description = trim( sprintf('%s - %s', $validated['email'], $validated['description']), '- ');
 
+        $payment_name = empty($validated['payment-name']) ? 'Autre / Other' : $validated['payment-name'];
+
         $checkout_data = [
             'client_reference_id' => $description,
             'customer_email' => $validated['email'],
@@ -35,7 +38,7 @@ class PaymentController extends Controller
                 [
                     'price_data' => [
                         'product_data' => [
-                            'name' => 'Paiement / Payment',
+                            'name' => $payment_name,
                             'description' => $validated['description'],
                         ],
                         'unit_amount' => $amount,

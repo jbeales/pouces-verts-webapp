@@ -53,6 +53,7 @@ class HandleCheckoutSessionComplete implements ShouldQueue
 
             // Set some defaults & avoid missing offset errors.
             $event = array_merge([
+                'id' => '',
                 'client_reference_id' => '',
                 'amount_total' => 0,
                 'payment_intent' => '',

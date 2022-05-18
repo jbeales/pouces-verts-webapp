@@ -28,11 +28,26 @@ class Payment {
 
     public function record( array $event ) {
 
+        // Get the description of what was paid for.
+        $stripe = new \Stripe\StripeClient(config('services.stripe.secret_key'));
+        $session = $stripe->checkout->sessions->retrieve(
+            'cs_live_a1Tx7zuYroDfooM6d0ihTk8hau3351rCu5XE3IeCAe3pZzsKQIGu2v5d3t',
+            [
+                'expand' => ['line_items.data.price.product']
+            ]
+        );
+        $product = $session->line_items->first()->price->product;
+
+
+
         $this->firstSheet()->append([[
             'Timestamp' => Carbon::now()->format('j F Y H:i:s e'),
-            'Description' => $event['client_reference_id'],
+            'Charge Name' => $event['client_reference_id'],
+            'Product' => $product->name,
+            'Description' => $product->description,
             'Amount' => (string)$event['amount_total']/100,
             'Stripe ID' => $event['payment_intent'],
+
         ]]);
 
     }

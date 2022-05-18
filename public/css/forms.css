@@ -10,7 +10,7 @@ form fieldset {
 form label {
   display: block;
 }
-form input, form button, form textarea {
+form input, form button, form textarea, form select {
   font-size: 24px;
   border: 1px solid var(--light-color);
   border-radius: 3px;

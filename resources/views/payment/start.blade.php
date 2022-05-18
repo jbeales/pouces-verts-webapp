@@ -47,7 +47,34 @@
                 </p>
 
                 <p>
-                    <label for="description">Ce paiement est pour:  / <span lang="en-CA">This payment is for:</span></label>
+                    <label for="payment-name">Ce paiement est pour:  / <span lang="en-CA">This payment is for:</span></label>
+                    <select type="text" name="payment-name" id="payment-name">
+                        <option value="">Selectionnez / Choose</option>
+                        @foreach( [
+	                        'Atelier / Workshop',
+	                        'Clé / Key',
+	                        'Don / Donation',
+	                        'Frais du jardinage / Gardening Fees',
+	                        'Fumier / Manure',
+	                        'Autre / Other'
+	                    ] as $item )
+                            @php
+                                $selector = '';
+								if( old('payment-name') === $item) {
+									$selector = ' selected';
+								}
+
+                            @endphp
+                        <option value="{{$item}}"{!! $selector !!}>{{$item}}</option>
+                       @endforeach
+                    </select>
+                    @error('payment-name')
+                    <span class="error">{{$message}}</span>
+                    @enderror
+                </p>
+
+                <p>
+                    <label for="description">Déscription ou commentaire:  / <span lang="en-CA">Description or comment:</span></label>
                     <input type="text" name="description" id="description" value="{{old('description')}}">
                     @error('description')
                     <span class="error">{{$message}}</span>
