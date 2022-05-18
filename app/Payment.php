@@ -31,7 +31,7 @@ class Payment {
         // Get the description of what was paid for.
         $stripe = new \Stripe\StripeClient(config('services.stripe.secret_key'));
         $session = $stripe->checkout->sessions->retrieve(
-            'cs_live_a1Tx7zuYroDfooM6d0ihTk8hau3351rCu5XE3IeCAe3pZzsKQIGu2v5d3t',
+            $event['id'],
             [
                 'expand' => ['line_items.data.price.product']
             ]
