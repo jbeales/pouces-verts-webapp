@@ -56,6 +56,7 @@
 	                        'Don / Donation',
 	                        'Frais du jardinage / Gardening Fees',
 	                        'Fumier / Manure',
+							'Semis / Seedlings',
 	                        'Autre / Other'
 	                    ] as $item )
                             @php
